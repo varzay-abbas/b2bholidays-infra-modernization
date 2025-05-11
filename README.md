@@ -1,6 +1,9 @@
-# B2BHolidays Infrastructure Modernization - DevOps Approach
+# B2B Infrastructure Modernization - DevOps Approach
 
 ## 📌 Overview
+
+### Architectural Diagram
+![Diagram](screenshots/Modern-Architectur-N-Existing.png)
 
 This repository contains the complete implementation of a secure and observable microservices platform for B2BHolidays, built as part of the Senior DevOps Engineer technical assessment. It showcases a service mesh architecture deployed using lightweight Kubernetes (K3s), Cilium with WireGuard encryption, and a fully containerized multi-node simulation.
 
@@ -141,6 +144,23 @@ k3s/
 ---
 
 ## 📷 Screenshots / Evidence
+
+## 📷 Screenshots
+
+### 1. K3s Node Status
+![K3s Nodes](screenshots/Nodes.png)
+
+### 2. Cilium Status with WireGuard
+![Cilium Status](Screenshots/cilium-status.png)
+
+### 3. Hubble UI - Live Service Graph
+![Hubble UI](screenshots/hubble-ui-network-flow-kube-system-identity-1239.png)
+
+### 4. ArgoCD GitOps Deployment View
+![ArgoCD App Tree](screenshots/AgroCD-insight-app.png)
+
+### 5. All Services
+![ArgoCD Health](Screenshots/All-services.png)
 
 Attach screenshots of:
 
