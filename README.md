@@ -1,4 +1,4 @@
-# B2BHolidays Infrastructure Modernization - DevOps Assessment
+# B2BHolidays Infrastructure Modernization - DevOps Approach
 
 ## 📌 Overview
 
