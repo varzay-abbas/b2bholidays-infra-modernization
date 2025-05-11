@@ -149,7 +149,7 @@ k3s/
 ![K3s Nodes](screenshots/Nodes.png)
 
 ### 2. Cilium Status with WireGuard
-![Cilium Status](Screenshots/cilium-status.png)
+![Cilium Status](screenshots/cilium-status.png)
 
 ### 3. Hubble UI - Live Service Graph
 ![Hubble UI](screenshots/hubble-ui-network-flow-kube-system-identity-1239.png)
