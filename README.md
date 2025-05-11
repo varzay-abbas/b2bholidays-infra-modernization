@@ -143,8 +143,6 @@ k3s/
 
 ---
 
-## 📷 Screenshots / Evidence
-
 ## 📷 Screenshots
 
 ### 1. K3s Node Status
