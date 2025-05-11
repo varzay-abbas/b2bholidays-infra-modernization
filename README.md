@@ -160,7 +160,10 @@ k3s/
 ![ArgoCD App Tree](screenshots/AgroCD-insight-app.png)
 
 ### 5. All Services
-![ArgoCD Health](screenshots/All-services.png)
+![All Servivices](screenshots/All-services.png)
+
+### 6. All Services
+![ArgoCD Health and Synced](screenshots/Agrocd-health-synced.png)
 
 Attach screenshots of:
 
