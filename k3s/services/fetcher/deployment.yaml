@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fetcher
+  namespace: app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fetcher
+  template:
+    metadata:
+      labels:
+        app: fetcher
+    spec:
+      containers:
+      - image: nginxdemos/hello
+        name: fetcher
+        ports:
+        - containerPort: 80

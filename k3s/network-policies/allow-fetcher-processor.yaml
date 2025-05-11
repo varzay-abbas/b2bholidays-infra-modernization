@@ -1,0 +1,13 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: allow-fetcher-processor
+  namespace: app
+spec:
+  endpointSelector:
+    matchLabels:
+      app: processor
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app: fetcher

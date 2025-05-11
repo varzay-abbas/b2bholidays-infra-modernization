@@ -1,0 +1,13 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: allow-processor-redis
+  namespace: db
+spec:
+  endpointSelector:
+    matchLabels:
+      app: redis
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app: processor

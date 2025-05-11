@@ -1,0 +1,231 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: app
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sender
+  namespace: app
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sender
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels: &id001
+      app: sender
+  template:
+    metadata:
+      labels: *id001
+    spec:
+      containers:
+      - image: nginxdemos/hello
+        name: sender
+        ports:
+        - containerPort: 80
+      serviceAccountName: sender
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sender
+  namespace: app
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: sender
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: fetcher
+  namespace: app
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fetcher
+  namespace: app
+spec:
+  replicas: 2
+  selector:
+    matchLabels: &id001
+      app: fetcher
+  template:
+    metadata:
+      labels: *id001
+    spec:
+      containers:
+      - image: nginxdemos/hello
+        name: fetcher
+        ports:
+        - containerPort: 80
+      serviceAccountName: fetcher
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fetcher
+  namespace: app
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: fetcher
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: processor
+  namespace: app
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: processor
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels: &id001
+      app: processor
+  template:
+    metadata:
+      labels: *id001
+    spec:
+      containers:
+      - image: nginxdemos/hello
+        name: processor
+        ports:
+        - containerPort: 80
+      serviceAccountName: processor
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: processor
+  namespace: app
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: processor
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: edge
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: legacy
+  namespace: edge
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: legacy
+  namespace: edge
+spec:
+  replicas: 1
+  selector:
+    matchLabels: &id001
+      app: legacy
+  template:
+    metadata:
+      labels: *id001
+    spec:
+      containers:
+      - image: php:7.4-apache
+        name: legacy
+        ports:
+        - containerPort: 80
+      serviceAccountName: legacy
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: legacy
+  namespace: edge
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: legacy
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: db
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: redis
+  namespace: db
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels: &id001
+      app: redis
+  template:
+    metadata:
+      labels: *id001
+    spec:
+      containers:
+      - image: redis:7
+        name: redis
+        ports:
+        - containerPort: 6379
+      serviceAccountName: redis
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  namespace: db
+spec:
+  ports:
+  - port: 6379
+    protocol: TCP
+    targetPort: 6379
+  selector:
+    app: redis

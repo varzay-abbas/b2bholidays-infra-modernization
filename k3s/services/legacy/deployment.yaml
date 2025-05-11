@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: legacy
+  namespace: edge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: legacy
+  template:
+    metadata:
+      labels:
+        app: legacy
+    spec:
+      containers:
+      - image: php:7.4-apache
+        name: legacy
+        ports:
+        - containerPort: 80

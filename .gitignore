@@ -1,0 +1,43 @@
+*.txt
+# Kubernetes
+*.yaml~                     # temp yaml files
+*.log
+*.bak
+.kube/
+.kubeconfig
+
+# Helm
+charts/
+*.tgz
+
+# ArgoCD cache
+.argocd/
+
+# Terraform (if used later)
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# Docker
+*.tar
+*.img
+.dockerignore
+
+# VSCode & IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Secrets (always store separately, use sealed-secrets or SOPS)
+secrets.yaml
+*.enc.yaml
+*.key
+*.crt
+.env
+.env.*
+/b2b/senior_devops_engineer_assessment_candidate.md
