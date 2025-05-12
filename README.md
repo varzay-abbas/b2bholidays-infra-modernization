@@ -207,11 +207,11 @@ To monitor or revert deployments:
 ### 5. All Services
 ![All Servivices](screenshots/All-services.png)
 
-### 6. All Services
+### 6. ArgoCD
 ![ArgoCD Health and Synced](screenshots/Agrocd-health-synced.png)
 
 
-### 7. All Services
+### 7. Grafana
 ![Grafana](screenshots/Grafana.png)
 
 
