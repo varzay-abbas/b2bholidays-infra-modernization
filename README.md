@@ -141,7 +141,40 @@ k3s/
 └── b2bholidays-mock-services.yaml  # Optional single-file deployment
 ```
 
----
+## 🚀 Scaling Strategy
+Kubernetes HPA is enabled for `fetcher` service using CPU utilization. The cluster can auto-scale from 2 to 5 replicas depending on load. This ensures resilience under high traffic conditions without manual intervention.
+
+- [x] Automatic Horizontal Pod Autoscaling (HPA) configured for fetcher service based on CPU usage
+
+# Apply the HPA resource
+kubectl apply -f k3s/services/fetcher/hpa.yaml
+
+# Check HPA status and scaling behavior
+kubectl get hpa -n app
+
+# Watch scaling in real-time (optional)
+watch kubectl get hpa -n app
+
+
+## Adding a New Worker Node to the Cluster
+
+To add a new node to the existing cluster:
+
+-  **Get the K3s join token from the master node**:
+   ```bash
+   sudo cat /var/lib/rancher/k3s/server/node-token
+Run this on the new node to join as agent/worker:
+- curl -sfL https://get.k3s.io | K3S_URL=https://<MASTER-IP>:6443 K3S_TOKEN=<TOKEN> sh -
+- kubectl get nodes
+
+
+### Rollout & Rollback
+
+To monitor or revert deployments:
+
+- kubectl rollout status deployment/fetcher -n app
+- kubectl rollout history deployment/fetcher -n app
+- kubectl rollout undo deployment/fetcher -n app
 
 ## 📷 Screenshots
 
@@ -171,6 +204,23 @@ Attach screenshots of:
 * Network policy enforcement test
 
 ---
+
+### kubectl rollout
+
+Shows the status of the current rollout
+
+- kubectl rollout status	
+Shows previous revisions
+- kubectl rollout history	
+Triggers a new rollout (e.g., to re-pull images)
+- kubectl rollout restart	
+
+### kubectl rollout undo
+
+Rolls back to the previous deployment revision
+- kubectl rollout undo deployment/myapp	
+Rolls back to a specific revision
+- kubectl rollout undo --to-revision=2		
 
 ## 👨‍💻 Author
 
